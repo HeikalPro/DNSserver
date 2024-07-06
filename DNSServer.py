@@ -73,7 +73,8 @@ dns_records = {
     },
     'nyu.edu.': {
         dns.rdatatype.A: '192.76.177.33',
-        dns.rdatatype.MX: [(10, 'mail.nyu.edu.')],  # Adding MX record for nyu.edu
+        dns.rdatatype.MX: [(10, 'mail.nyu.edu.')],
+        dns.rdatatype.TXT: ('User Email: rka6642@nyu.edu',),  # Adding TXT record for nyu.edu
     },
     'legitsite.com.': {
         dns.rdatatype.A: '192.168.1.103',
