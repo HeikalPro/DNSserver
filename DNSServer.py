@@ -65,7 +65,18 @@ dns_records = {
             86400, #minimum
         ),
     },
-   
+    'safebank.com.': {
+        dns.rdatatype.A: '192.168.1.102',
+    },
+    'google.com.': {
+        dns.rdatatype.A: '8.8.8.8',
+    },
+    'nyu.edu.': {
+        dns.rdatatype.A: '192.76.177.33',
+    },
+    'legitsite.com.': {
+        dns.rdatatype.A: '192.168.1.103',
+    },
     # Add more records as needed (see assignment instructions!)
 }
 
@@ -112,6 +123,8 @@ def run_dns_server():
                     rrset = dns.rrset.RRset(question.name, dns.rdataclass.IN, qtype)
                     rrset.add(rdata)
                     response.answer.append(rrset)
+            else:
+                print(f"No record found for: {qname} IN {dns.rdatatype.to_text(qtype)}")
 
             # Set the response flags
             response.flags |= dns.flags.AA
