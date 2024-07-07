@@ -106,7 +106,7 @@ def run_dns_server():
             # Wait for incoming DNS requests
             data, addr = server_socket.recvfrom(1024)
             request = dns.message.from_wire(data)
-            # Create a response message using the `dns.message.make_response` method
+            # Create a response message using the dns.message.make_response method
             response = dns.message.make_response(request)
 
             # Get the question from the request
@@ -114,9 +114,9 @@ def run_dns_server():
             qname = question.name.to_text()
             qtype = question.rdtype
 
-            # Check if there is a record in the `dns_records` dictionary that matches the question
+            # Check if there is a record in the dns_records dictionary that matches the question
             if qname in dns_records and qtype in dns_records[qname]:
-                # Retrieve the data for the record and create an appropriate `rdata` object for it
+                # Retrieve the data for the record and create an appropriate rdata object for it
                 answer_data = dns_records[qname][qtype]
 
                 rdata_list = []
@@ -140,7 +140,7 @@ def run_dns_server():
             # Set the response flags
             response.flags |= 1 << 10
 
-            # Send the response back to the client using the `server_socket.sendto` method and put the response to_wire(), return to the addr you received from
+            # Send the response back to the client using the server_socket.sendto method and put the response to_wire(), return to the addr you received from
             print("Responding to request:", qname)
             server_socket.(response.to_wire(), addr)
         except KeyboardInterrupt:
@@ -164,8 +164,6 @@ def run_dns_server_user():
     input_thread.daemon = True
     input_thread.start()
     run_dns_server()
-
-
 if __name__ == '__main__':
     run_dns_server_user()
     #print("Encrypted Value:", encrypted_value)
