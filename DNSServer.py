@@ -32,14 +32,14 @@ def generate_aes_key(password, salt):
 def encrypt_with_aes(input_string, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    encrypted_data = f.encrypt(input_string.encode('utf-8'))
+    encrypted_data = f.encrypt(input_string)
     return encrypted_data
 
 def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
     decrypted_data = f.decrypt(encrypted_data)
-    return decrypted_data.decode('utf-8')
+    return decrypted_data
 
 # Prepare Encryption Parameters
 salt = b'Tandon'
@@ -49,7 +49,7 @@ input_string = 'AlwaysWatching'
 encrypted_value = encrypt_with_aes(input_string, password, salt)
 decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
 
-print(f"Encoded TXT value: {base64.urlsafe_b64encode(encrypted_value).decode('utf-8')}")
+print(f"Encoded TXT value: {encrypted_value}")
 print(f"Encrypted TXT value: {encrypted_value}")
 print(f"Decrypted TXT value: {decrypted_value}")
 
