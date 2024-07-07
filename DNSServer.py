@@ -93,7 +93,7 @@ dns_records = {
     },
     'legitsite.com.': {
         dns.rdatatype.A: '192.168.1.104',
-    },
+    }
 }
 
 def run_dns_server():
