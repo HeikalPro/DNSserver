@@ -142,7 +142,9 @@ def run_dns_server():
                 if qtype == dns.rdatatype.TXT:
                     try:
                         encoded_value = answer_data[0]
+                        print(f'Encoded TXT value: {encoded_value}')  # Debug statement
                         encrypted_value = base64.urlsafe_b64decode(encoded_value.encode('utf-8'))
+                        print(f'Encrypted TXT value: {encrypted_value}')  # Debug statement
                         decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
                         print(f'Decrypted TXT value: {decrypted_value}')
                     except Exception as e:
