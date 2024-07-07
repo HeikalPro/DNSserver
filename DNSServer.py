@@ -33,7 +33,7 @@ def encrypt_with_aes(input_string, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
     encrypted_data = f.encrypt(input_string.encode('utf-8'))
-    return encrypted_data    
+    return encrypted_data
 
 def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
@@ -137,6 +137,16 @@ def run_dns_server():
                     rrset = dns.rrset.RRset(question.name, dns.rdataclass.IN, qtype)
                     rrset.add(rdata)
                     response.answer.append(rrset)
+
+                # Decrypt TXT record if requested
+                if qtype == dns.rdatatype.TXT:
+                    try:
+                        encoded_value = answer_data[0]
+                        encrypted_value = base64.urlsafe_b64decode(encoded_value.encode('utf-8'))
+                        decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
+                        print(f'Decrypted TXT value: {decrypted_value}')
+                    except Exception as e:
+                        print(f'decrypt error! Type: {type(e)} Value: {e}')
 
             response.flags |= 1 << 10
 
