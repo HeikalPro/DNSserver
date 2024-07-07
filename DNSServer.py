@@ -40,7 +40,7 @@ def encrypt_with_aes(input_string, password, salt):
 def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    decrypted_data = f.decrypt(encrypted_data)?) #call the Fernet decrypt method
+    decrypted_data = f.decrypt(encrypted_data) #call the Fernet decrypt method
     return decrypted_data.decode('utf-8')
 
 salt = b'Tandon'  # Salt as a byte-object
@@ -126,7 +126,7 @@ def run_dns_server():
                         rdata_list.append(MX(dns.rdataclass.IN, dns.rdatatype.MX, pref, server))
                 elif qtype == dns.rdatatype.SOA:
                     mname, rname, serial, refresh, retry, expire, minimum = answer_data # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
-                    rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA,mname, rname, serial, refresh, retry, expire, minimum?) # follow format from previous line
+                    rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA,mname, rname, serial, refresh, retry, expire, minimum) # follow format from previous line
                     rdata_list.append(rdata)
                 else:
                     if isinstance(answer_data, str):
