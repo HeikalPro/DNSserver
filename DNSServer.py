@@ -98,6 +98,7 @@ dns_records = {
             1800, #retry
             604800, #expire
             86400, #minimum
+        )
     },
     'legitsite.com.': {
         dns.rdatatype.A: '192.168.1.104',
@@ -150,7 +151,7 @@ def run_dns_server():
 
             # Send the response back to the client using the server_socket.sendto method and put the response to_wire(), return to the addr you received from
             print("Responding to request:", qname)
-            server_socket.(response.to_wire(), addr)
+            server_socket.sendto(response.to_wire(), addr)
         except KeyboardInterrupt:
             print('\nExiting...')
             server_socket.close()
