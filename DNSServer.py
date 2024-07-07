@@ -159,14 +159,9 @@ def run_dns_server_user():
     run_dns_server()
 
 if __name__ == '__main__':
-    salt = os.urandom(16)  # Randomly generated 16-byte salt
-    password = 'your_password'
-    input_string = 'your_secret_data'
 
-    encrypted_value = encrypt_with_aes(input_string, password, salt)
-    decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
-
+    run_dns_server_user()
     print("Encrypted Value:", encrypted_value)
     print("Decrypted Value:", decrypted_value)
 
-    run_dns_server_user()
+    
