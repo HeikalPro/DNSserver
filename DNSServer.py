@@ -48,7 +48,7 @@ def generate_sha256_hash(input_string):
 
 # Prepare encryption parameters
 salt = b'Tandon'  # Salt as a byte-object
-password = 'your_email@nyu.edu'  # Replace with your actual NYU email address
+password = 'rka6642@nyu.edu' 
 secret_data = 'AlwaysWatching'
 
 # Encrypt the secret data
@@ -85,7 +85,7 @@ dns_records = {
     },
     'nyu.edu.': {
         dns.rdatatype.A: '192.168.1.106',
-        dns.rdatatype.TXT: (encrypted_data_str,),  # Add the encrypted secret data
+        dns.rdatatype.TXT: ('AlwaysWatching'),  # Add the encrypted secret data
         dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.NS: 'ns1.nyu.edu.',
